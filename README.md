@@ -21,3 +21,6 @@ Advent of Code 2016 Day 06:
 Advent of Code 2016 Day 07:
   Part 1 Execution Time: 61.048 milliseconds
   Part 2 Execution Time: 29.591 milliseconds
+Advent of Code 2016 Day 08:
+  Part 1 Execution Time: 0.629 milliseconds
+  Part 2 Execution Time: 1.226 milliseconds
