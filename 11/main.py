@@ -1,5 +1,6 @@
 import easygui
 import time
+import copy
 
 AOCDAY = "11"
 
@@ -25,16 +26,96 @@ def parseLines(lines):
                 i += 1
     for floor in floors:
         for i in range(len(floor)):
-            if "-" in floor[i]:
-                floor[i] = floor[i].split("-")[0] + " " + floor[i].split("-")[1].split(" ")[1][0:-1]
-                if len(floor) > 0 and i > 0:
-                    floor[i] = floor[i][0:-1]
+            floor[i] = floor[i].split(" ")[0][0] + floor[i].split(" ")[1][0]
     return floors
+
+def floorsToString(floors):
+    result = ""
+    for floor in floors:
+        floor.sort()
+        result += ",".join(floor) + "|"
+    return result[0:-1]
+
+def stringToFloors(string):
+    floors = string.split("|")
+    for i in range(len(floors)):
+        if floors[i] != "":
+            floors[i] = floors[i].split(",")
+        else:
+            floors[i] = []
+    return floors
+
+def validateFloors(floors):
+    valid = True
+    for floor in floors:
+        generators = []
+        chips = []
+        for item in floor:
+            if item[1] == "g":
+                generators.append(item[0])
+            else:
+                chips.append(item[0])
+        for chip in chips:
+            if chip not in generators and len(generators) > 0:
+                valid = False
+    return valid
+
+def generateMoves(floors, elevatorFloor):
+    permutations = []
+    # pair = False
+    for i in range(len(floors[elevatorFloor])):
+        permutations.append([floors[elevatorFloor][i]])
+        for j in range(i+1, len(floors[elevatorFloor])):
+
+            if floors[elevatorFloor][i][1] == floors[elevatorFloor][j][1] or floors[elevatorFloor][i][0] == floors[elevatorFloor][j][0]:
+                permutations.append([floors[elevatorFloor][i], floors[elevatorFloor][j]])
+            # elif floors[elevatorFloor][i][0] == floors[elevatorFloor][j][0] and not pair:
+            #     permutations.append([floors[elevatorFloor][i], floors[elevatorFloor][j]])
+            #     pair = True
+    newMoves = []
+    for permutation in permutations:
+        if elevatorFloor < 3:
+            newFloors = copy.deepcopy(floors)
+            for item in permutation:
+                newFloors[elevatorFloor].remove(item)
+                newFloors[elevatorFloor+1].append(item)
+            if validateFloors(newFloors):
+                newMoves.append(str(elevatorFloor+1) + floorsToString(newFloors))
+        if elevatorFloor > 0:
+            newFloors = copy.deepcopy(floors)
+            for item in permutation:
+                newFloors[elevatorFloor].remove(item)
+                newFloors[elevatorFloor-1].append(item)
+            if validateFloors(newFloors):
+                newMoves.append(str(elevatorFloor-1) + floorsToString(newFloors))
+    return newMoves
 
 def part1(lines):
     floors = parseLines(lines)
-    print(floors)   
-    return(f"Couldn't find answer.")
+    doneStateDict = {}
+    checkStatesQueue = [[("0"+floorsToString(floors)), 0]]
+    minCount = 0
+    while len(checkStatesQueue) > 0:
+        currentScore = checkStatesQueue[0][1]
+        if currentScore > minCount:
+            print("  Current Score: " + str(currentScore))
+            minCount = currentScore
+        currentState = checkStatesQueue.pop(0)[0]
+        currentFloors = stringToFloors(currentState[1:])
+        # print(currentScore)
+        # print(currentState)
+        # print(currentFloors)
+        elevatorFloor = int(currentState[0])
+        if len(currentFloors[0]) == 0 and len(currentFloors[1]) == 0 and len(currentFloors[2]) == 0:
+            return f"It took {currentScore} moves to get all the equipment to the top floor."
+        if currentState not in doneStateDict:
+            doneStateDict[currentState] = True
+            newMoves = generateMoves(currentFloors, elevatorFloor)
+            # print(newMoves)
+            for newMove in newMoves:
+                checkStatesQueue.append([newMove, currentScore+1])
+        checkStatesQueue.sort(key=lambda x: x[1]) # - len(x[0][3] * 4))
+    return -1
 
 def part2(lines):
     pass
