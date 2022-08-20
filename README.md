@@ -30,3 +30,9 @@ Advent of Code 2016 Day 09:
 Advent of Code 2016 Day 10:
   Part 1 Execution Time: 9.925 milliseconds
   Part 2 Execution Time: 24.762 milliseconds
+Advent of Code 2016 Day 11:
+  Part 1 Execution Time: 1112924.017 milliseconds
+  Part 2 Execution Time: 1120619.249 milliseconds
+Advent of Code 2016 Day 12:
+  Part 1 Execution Time: 232.205 milliseconds
+  Part 2 Execution Time: 6316.736 milliseconds
