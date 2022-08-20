@@ -91,6 +91,7 @@ def generateMoves(floors, elevatorFloor):
     return newMoves
 
 def part1(lines):
+    # NOTE: In order for this to work you will have to make sure the first letter of each element is unique in the input
     floors = parseLines(lines)
     doneStateDict = {}
     checkStatesQueue = [[("0"+floorsToString(floors)), 0]]
@@ -102,23 +103,39 @@ def part1(lines):
             minCount = currentScore
         currentState = checkStatesQueue.pop(0)[0]
         currentFloors = stringToFloors(currentState[1:])
-        # print(currentScore)
-        # print(currentState)
-        # print(currentFloors)
         elevatorFloor = int(currentState[0])
         if len(currentFloors[0]) == 0 and len(currentFloors[1]) == 0 and len(currentFloors[2]) == 0:
             return f"It took {currentScore} moves to get all the equipment to the top floor."
         if currentState not in doneStateDict:
             doneStateDict[currentState] = True
             newMoves = generateMoves(currentFloors, elevatorFloor)
-            # print(newMoves)
             for newMove in newMoves:
                 checkStatesQueue.append([newMove, currentScore+1])
-        checkStatesQueue.sort(key=lambda x: x[1]) # - len(x[0][3] * 4))
-    return -1
+        checkStatesQueue.sort(key=lambda x: x[1])
+    return "No Solution Found"
 
 def part2(lines):
-    pass
+    floors = parseLines(lines)
+    doneStateDict = {}
+    checkStatesQueue = [[("0"+floorsToString(floors)), 0]]
+    minCount = 0
+    while len(checkStatesQueue) > 0:
+        currentScore = checkStatesQueue[0][1]
+        if currentScore > minCount:
+            print("  Current Score: " + str(currentScore))
+            minCount = currentScore
+        currentState = checkStatesQueue.pop(0)[0]
+        currentFloors = stringToFloors(currentState[1:])
+        elevatorFloor = int(currentState[0])
+        if len(currentFloors[0]) == 0 and len(currentFloors[1]) == 0 and len(currentFloors[2]) == 0:
+            return f"It took {currentScore+24} moves to get all the equipment to the top floor."
+        if currentState not in doneStateDict:
+            doneStateDict[currentState] = True
+            newMoves = generateMoves(currentFloors, elevatorFloor)
+            for newMove in newMoves:
+                checkStatesQueue.append([newMove, currentScore+1])
+        checkStatesQueue.sort(key=lambda x: x[1])
+    return "No Solution Found"
 
 def main ():
     # Opens a dialog to select the input file
