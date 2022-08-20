@@ -1,7 +1,5 @@
 import easygui
 import time
-import math
-
 
 AOCDAY = "01"
 
@@ -16,6 +14,7 @@ def readFile(fileName):
 
 
 def part1(lines):
+    
     # Code the solution to part 1 here, returning the answer as a string
     
     
