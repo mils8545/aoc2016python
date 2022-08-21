@@ -60,3 +60,9 @@ Advent of Code 2016 Day 19:
 Advent of Code 2016 Day 20:
   Part 1 Execution Time: 60.672 milliseconds
   Part 2 Execution Time: 58.877 milliseconds
+Advent of Code 2016 Day 21:
+  Part 1 Execution Time: 0.341 milliseconds
+  Part 2 Execution Time: 326.966 milliseconds
+Advent of Code 2016 Day 22:
+  Part 1 Execution Time: 258.812 milliseconds
+  Part 2 Execution Time: 14.692 milliseconds  * Visualizes and requires user to solve manually
