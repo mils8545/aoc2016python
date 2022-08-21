@@ -66,3 +66,6 @@ Advent of Code 2016 Day 21:
 Advent of Code 2016 Day 22:
   Part 1 Execution Time: 258.812 milliseconds
   Part 2 Execution Time: 14.692 milliseconds  * Visualizes and requires user to solve manually
+Advent of Code 2016 Day 23:
+  Part 1 Execution Time: 21.485 milliseconds
+  Part 2 Execution Time: 889765.738 milliseconds
