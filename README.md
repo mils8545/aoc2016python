@@ -48,3 +48,9 @@ Advent of Code 2016 Day 15:
 Advent of Code 2016 Day 16:
   Part 1 Execution Time: 0.095 milliseconds
   Part 2 Execution Time: 32974.024 milliseconds
+Advent of Code 2016 Day 17:
+  Part 1 Execution Time: 121.191 milliseconds
+  Part 2 Execution Time: 110.033 milliseconds
+Advent of Code 2016 Day 18:
+  Part 1 Execution Time: 1.352 milliseconds
+  Part 2 Execution Time: 6899.134 milliseconds
