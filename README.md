@@ -72,3 +72,6 @@ Advent of Code 2016 Day 23:
 Advent of Code 2016 Day 24:
   Part 1 Execution Time: 123.716 milliseconds
   Part 2 Execution Time: 107.372 milliseconds
+Advent of Code 2016 Day 25:
+  Part 1 Execution Time: 9728.158 milliseconds
+  Part 1 Result: Once the program that generates the clock signal is 192.
