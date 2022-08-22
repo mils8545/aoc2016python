@@ -69,3 +69,6 @@ Advent of Code 2016 Day 22:
 Advent of Code 2016 Day 23:
   Part 1 Execution Time: 21.485 milliseconds
   Part 2 Execution Time: 889765.738 milliseconds
+Advent of Code 2016 Day 24:
+  Part 1 Execution Time: 123.716 milliseconds
+  Part 2 Execution Time: 107.372 milliseconds
